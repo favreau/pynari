@@ -1,3 +1,5 @@
+![Collage of Samples](collage-pynari.jpg)
+
 # `pyNARI` - a Python Interface for ANARI
 
 PyNari is a thin python wrapper over the Khronos `ANARI` API
@@ -270,4 +272,20 @@ mpirun -x ANARI_LIBRARY=barney -n 6 python3 ../sample06.py  -o sample06.png
 ```
 
 ![](sample06.jpg)
+
+
+
+# Interactive Sample Viewer 
+
+## Prerequisites
+
+Obviously, you'll need pynari
+(http://github.com/ingowald/pynari). Pynari can be gotten in two ways:
+through `pip`, or through a local build from this repo (see above).
+
+## External Python Packages for the anariViewer
+
+```
+pip install glfw pyopengl simpleitk dearpygui
+```
 

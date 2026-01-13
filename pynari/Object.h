@@ -17,9 +17,13 @@
 #pragma once
 
 #include "pynari/Device.h"
+#include <helium/helium_math.h>
+#include <anari/anari_cpp.hpp>
 
 namespace pynari {
 
+  struct Device;
+  
   std::string to_string(anari::DataType type);
 
   /*! base class for any anari object type such as a light, a
@@ -38,10 +42,35 @@ namespace pynari {
 
     void set_object(const char *name, int type,
                     const Object::SP &object);
-    void set_string(const char *name, int type,
+    void set_object_notype(const char *name, 
+                    const Object::SP &object);
+    void set_string(const char *name, int type, 
                     const std::string &stringValue);
+    void set_string_notype(const char *name, //int type,
+                           const std::string &stringValue);
+
+    /*! DEPRECATED for compatibility only! */
     void setArray_list(const char *name, int type, 
                        const py::list &list);
+    /*! DEPRECATED for compatibility only! */
+    void setArray_np(const char *name, int type, 
+                     const py::buffer &buffer);
+    
+    
+    void setArray1D_list(const char *name, int type, 
+                         const py::list &list);
+    void setArray1D_np(const char *name, int type, 
+                       const py::buffer &buffer);
+    // void setArray2D_list(const char *name, int type, 
+    //                      const py::list &list);
+    void setArray2D_np(const char *name, int type, 
+                       const py::buffer &buffer);
+    // void setArray3D_list(const char *name, int type, 
+    //                      const py::list &list);
+    void setArray3D_np(const char *name, int type, 
+                       const py::buffer &buffer);
+    void set_box1(const char *name, int type,
+                  const helium::box1 b);
     void set_float(const char *name, int type,
                    float v);
     void set_float2(const char *name, int type, 
@@ -50,10 +79,24 @@ namespace pynari {
                     const std::tuple<float,float,float> &v);
     void set_float4(const char *name, int type, 
                     const std::tuple<float,float,float,float> &v);
+    void set_float12(const char *name, int type, 
+                     const std::tuple<
+                     float,float,float,float,
+                     float,float,float,float,
+                     float,float,float,float> &v);
+    void set_float16(const char *name, int type, 
+                     const std::tuple<
+                     float,float,float,float,
+                     float,float,float,float,
+                     float,float,float,float,
+                     float,float,float,float> &v);
     void set_float_vec(const char *name, int type, 
                        const std::vector<float> &v);
     void set_uint(const char *name, int type,
                   uint v);
+    void set_ulong(const char *name,
+                   int type,
+                   uint64_t v);
     void set_uint2(const char *name, int type, 
                    const std::tuple<uint,uint> &v);
     void set_uint3(const char *name, int type, 
